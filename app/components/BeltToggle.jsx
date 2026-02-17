@@ -1,20 +1,27 @@
 'use client';
 
 export default function BeltToggle({ label, isActive, onClick, color }) {
-  const bgColor = {
-    HB: 'bg-red-100 border-red-300 text-red-700',
-    LB: 'bg-green-100 border-green-300 text-green-700',
-    HYBRID: 'bg-blue-100 border-blue-300 text-blue-700',
+  const toggleColor = {
+    HB: 'bg-red-500',
+    LB: 'bg-green-500',
+    HYBRID: 'bg-blue-500',
   };
 
   return (
-    <button
-      onClick={onClick}
-      className={`rounded-lg border-2 px-4 py-2 font-medium transition-all ${
-        isActive ? `${bgColor[color]} border-2` : 'border-gray-300 bg-white text-gray-700'
-      }`}
-    >
-      {label}
-    </button>
+    <div className="flex items-center gap-3">
+      <button
+        onClick={onClick}
+        className={`relative inline-flex h-8 w-14 items-center rounded-full transition-all ${
+          isActive ? toggleColor[color] : 'bg-gray-300'
+        }`}
+      >
+        <span
+          className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
+            isActive ? 'translate-x-7' : 'translate-x-1'
+          }`}
+        />
+      </button>
+      <span className="font-medium text-gray-700">{label}</span>
+    </div>
   );
 }
